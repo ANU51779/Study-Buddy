@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Suggested Schedule</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container" style="max-width: 600px">
+      <div class="main-content">
+        <h1>Today's Suggested Tasks ✅</h1>
+        {% if pending_tasks %}
+        <ul>
+          {% for task in pending_tasks %}
+          <li>{{ task.name }}</li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <p>All tasks completed! 🎉</p>
+        {% endif %}
+        <p><a href="{{ url_for('home') }}">← Back to Home</a></p>
+      </div>
+    </div>
+  </body>
+</html>

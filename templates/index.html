@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Smart Study Planner</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <!-- Chart.js for progress -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      /* You can also keep your CSS in style.css; these are just quick extras */
+      canvas {
+        max-width: 300px;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="sidebar">
+        <h2>{{ username }}'s Tasks</h2>
+        <ul>
+          {% for task in tasks %}
+          <li class="{% if task.completed %}completed{% endif %}">
+            {{ task.name }}
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="main-content">
+        <!-- Theme toggle button -->
+        <button onclick="toggleTheme()">🌓 Toggle Theme</button>
+
+        <h1>Welcome, {{ username }} 📚</h1>
+        <a href="{{ url_for('add_task') }}">➕ Add Task</a>
+        <a href="{{ url_for('suggest_schedule') }}">💡 Suggest Schedule</a>
+        <a href="{{ url_for('logout') }}">🚪 Logout</a>
+
+        <!-- Progress Pie Chart -->
+        <h2>Progress</h2>
+        <canvas id="progressChart"></canvas>
+
+        <ul class="task-list">
+          {% for task in tasks %}
+          <li>
+            <span class="{% if task.completed %}completed{% endif %}">
+              {{ task.name }} {% if task.due_time %} (Due: {{
+              task.due_time.strftime('%Y-%m-%d %H:%M') }}) {% endif %}
+            </span>
+            {% if not task.completed %} {% if not task.due_time or task.due_time
+            > current_time %}
+            <a href="{{ url_for('complete_task', task_id=task.id) }}"
+              >✅ Complete</a
+            >
+            {% else %}
+            <span style="color: red">⛔ Deadline passed</span>
+            {% endif %} {% endif %}
+            <a href="{{ url_for('delete_task', task_id=task.id) }}"
+              >🗑️ Delete</a
+            >
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <script>
+      // Pie chart
+      const ctx = document.getElementById('progressChart').getContext('2d');
+      const progress = {{ progress }};
+      const data = {
+          labels: ['Completed', 'Pending'],
+          datasets: [{
+              data: [progress, 100 - progress],
+              backgroundColor: ['#2ecc71', '#e74c3c'],
+          }]
+      };
+      const config = {
+          type: 'pie',
+          data: data,
+      };
+      const progressChart = new Chart(ctx, config);
+
+      // Dark mode toggle and persist
+      function toggleTheme() {
+          document.body.classList.toggle('dark-mode');
+          if (document.body.classList.contains('dark-mode')) {
+              localStorage.setItem('theme', 'dark');
+          } else {
+              localStorage.setItem('theme', 'light');
+          }
+      }
+
+      // Load saved theme
+      window.onload = function() {
+          const savedTheme = localStorage.getItem('theme');
+          if (savedTheme === 'dark') {
+              document.body.classList.add('dark-mode');
+          }
+      }
+    </script>
+  </body>
+</html>

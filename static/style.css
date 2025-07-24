@@ -1,0 +1,138 @@
+/* Base Styles — Light Theme */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #dfe9f3, #ffffff);
+    min-height: 100vh;
+    transition: all 0.3s ease;
+    color: #333;
+}
+
+.container {
+    display: flex;
+    max-width: 1000px;
+    margin: 50px auto;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Dark Theme Overrides */
+body.dark-mode {
+    background: #121212;
+    color: #f0f0f0;
+}
+
+body.dark-mode .container {
+    background: #1e1e1e;
+}
+
+body.dark-mode .sidebar {
+    background: #333;
+}
+
+body.dark-mode a, 
+body.dark-mode button,
+body.dark-mode input[type="submit"] {
+    background: #555;
+}
+
+body.dark-mode a:hover, 
+body.dark-mode button:hover,
+body.dark-mode input[type="submit"]:hover {
+    background: #777;
+}
+
+.sidebar {
+    width: 250px;
+    background: #3498db;
+    color: white;
+    padding: 20px;
+}
+
+.sidebar h2 {
+    margin-bottom: 20px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin-bottom: 10px;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 5px 0;
+}
+
+.sidebar a:hover {
+    text-decoration: underline;
+}
+
+.main-content {
+    flex: 1;
+    padding: 30px;
+}
+
+h1 {
+    color: inherit;
+    margin-bottom: 20px;
+}
+
+a, button, input[type="submit"] {
+    display: inline-block;
+    background: #3498db;
+    color: white;
+    padding: 10px 18px;
+    margin: 5px 0;
+    border: none;
+    border-radius: 6px;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+a:hover, button:hover, input[type="submit"]:hover {
+    background: #217dbb;
+    transform: translateY(-2px);
+}
+
+input[type="text"], input[type="password"] {
+    padding: 12px;
+    width: 80%;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    transition: border 0.3s ease;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+    border: 1px solid #3498db;
+    outline: none;
+}
+
+ul.task-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul.task-list li {
+    margin-bottom: 12px;
+    padding: 10px;
+    background: #f7f9fc;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.completed {
+    text-decoration: line-through;
+    color: #999;
+}
