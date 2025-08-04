@@ -29,4 +29,6 @@ Made with ❤️ by Anushka Singh
 
 ## 📬 Contact
 - Email: anuskas28940@gmail.com
-- LinkedIn: [Anushka Singh](https://www.linkedin.com/in/anushka-singh-5b6874353)
+- LinkedIn: [Anushka Singh](https://www.linkedin.com/in/anushka-singh-5b6874353)🎬
+-  [Click to watch the demo video](https://www.youtube.com/shorts/NMyyZP-Wal4)
+- 
